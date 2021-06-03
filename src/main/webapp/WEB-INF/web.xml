@@ -10,8 +10,28 @@
   	<description></description>
   	<servlet-class>com.todo.serlets.saveservlets</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>deleteservlet</servlet-name>
+  	<display-name>deleteservlet</display-name>
+  	<description></description>
+  	<servlet-class>com.todo.serlets.deleteservlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>deleteservlets</servlet-name>
+  	<display-name>deleteservlets</display-name>
+  	<description></description>
+  	<servlet-class>com.todo.serlets.deleteservlets</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>saveservlets</servlet-name>
   	<url-pattern>/saveservlets</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>deleteservlet</servlet-name>
+  	<url-pattern>/deleteservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>deleteservlets</servlet-name>
+  	<url-pattern>/deleteservlets</url-pattern>
   </servlet-mapping>
 </web-app>

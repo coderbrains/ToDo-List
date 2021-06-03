@@ -1,4 +1,10 @@
 <!doctype html>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.query.Query"%>
+<%@page import="org.hibernate.Transaction"%>
+<%@page import="org.hibernate.cfg.Configuration"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="com.todo.entity.Notes"%>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -46,8 +52,12 @@
 
 	<%
 	
-		
-	
+		Session s = new Configuration().configure().buildSessionFactory().openSession();
+		Transaction t =  s.beginTransaction();
+		Query q = s.createQuery("from Notes");
+		List<Notes> l = q.list();
+		for(Notes n : l)
+		{	
 	%>
 
 
@@ -56,14 +66,25 @@
 		<div class="card mt-5">
 			<img class="card-img-top" src="2.jpg" alt="Card image cap" style="max-width: 200px; padding:10px">
 			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">Some quick example text to build on the
-					card title and make up the bulk of the card's content.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
+				<h5 class="card-title"><%= n.getTitle() %></h5>
+				<p class="card-text"><%= n.getContent() %></p>
+				
+				<div class = "container text-center">
+					<a href="deleteservlets?note_id=<%= n.getId() %>" class="btn btn-primary">Delete</a>
+				
+				</div>
 			</div>
 		</div>
 
 	</div>
+	
+	<%
+	
+		}
+
+		t.commit();
+		s.close();
+	%>
 
 
 
